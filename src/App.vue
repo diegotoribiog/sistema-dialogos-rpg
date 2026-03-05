@@ -1,44 +1,44 @@
 <script setup>
-import { RouterView } from 'vue-router'
+import { RouterView } from "vue-router";
 
 // IMPORTAR IMÁGENES
-import koheartsNeutral from '@/assets/characters/kohearts/kohearts_neutral.png'
-import whiterabbitNeutral from '@/assets/characters/whiterabbit/whiterabbit_neutral.png'
-import cheshirecatNeutral from '@/assets/characters/cheshirecat/cheshirecat_neutral.png'
-import koheartsTalk from '@/assets/characters/kohearts/kohearts_talk.png'
-import whiterabbitTalk from '@/assets/characters/whiterabbit/whiterabbit_talk.png'
-import cheshirecatTalk from '@/assets/characters/cheshirecat/cheshirecat_talk.png'
+import koheartsNeutral from "@/assets/characters/kohearts/kohearts_neutral.png";
+import whiterabbitNeutral from "@/assets/characters/whiterabbit/whiterabbit_neutral.png";
+import cheshirecatNeutral from "@/assets/characters/cheshirecat/cheshirecat_neutral.png";
+import koheartsTalk from "@/assets/characters/kohearts/kohearts_talk.png";
+import whiterabbitTalk from "@/assets/characters/whiterabbit/whiterabbit_talk.png";
+import cheshirecatTalk from "@/assets/characters/cheshirecat/cheshirecat_talk.png";
 
-import dungeon1 from '@/assets/backgrounds/dungeon1.png'
-import dungeon2 from '@/assets/backgrounds/dungeon2.png'
+import dungeon1 from "@/assets/backgrounds/dungeon1.png";
+import dungeon2 from "@/assets/backgrounds/dungeon2.png";
 
 // PERSONAJES
 const characters = [
-  { 
-    id: "kohearts", 
-    name: "King of Hearts", 
-    portraits: { 
+  {
+    id: "kohearts",
+    name: "King of Hearts",
+    portraits: {
       neutral: koheartsNeutral,
-      talk: koheartsTalk
-    }
+      talk: koheartsTalk,
+    },
   },
-  { 
-    id: "whiterabbit", 
-    name: "White Rabbit", 
-    portraits: { 
+  {
+    id: "whiterabbit",
+    name: "White Rabbit",
+    portraits: {
       neutral: whiterabbitNeutral,
-      talk: whiterabbitTalk
-    }
+      talk: whiterabbitTalk,
+    },
   },
-  { 
-    id: "cheshirecat", 
-    name: "Cheshire Cat", 
-    portraits: { 
+  {
+    id: "cheshirecat",
+    name: "Cheshire Cat",
+    portraits: {
       neutral: cheshirecatNeutral,
-      talk: cheshirecatTalk
-    }
-  }
-]
+      talk: cheshirecatTalk,
+    },
+  },
+];
 
 // DIÁLOGOS
 const dialogues = [
@@ -48,9 +48,9 @@ const dialogues = [
     speakerId: "kohearts",
     background: dungeon1,
     pages: [
-      "Bienvenido al reino subterráneo.", 
-      "Soy King of Hearts, protector de estas tierras."
-    ]
+      "Bienvenido al reino subterráneo.",
+      "Soy King of Hearts, protector de estas tierras.",
+    ],
   },
 
   {
@@ -60,8 +60,8 @@ const dialogues = [
     background: dungeon1,
     pages: [
       "Bienvenido al reino subterráneo.",
-      "Soy White Rabbit, tu guía en este lugar."
-    ]
+      "Soy White Rabbit, tu guía en este lugar.",
+    ],
   },
 
   {
@@ -69,9 +69,7 @@ const dialogues = [
     characterIds: ["cheshirecat"],
     speakerId: "cheshirecat",
     background: dungeon2,
-    pages: [
-      "Soy el misterioso Cheshire Cat."
-    ]
+    pages: ["Soy el misterioso Cheshire Cat."],
   },
 
   {
@@ -79,16 +77,11 @@ const dialogues = [
     characterIds: ["cheshirecat"],
     speakerId: null,
     background: dungeon2,
-    pages: [
-      "..."
-    ]
-  }
-]
+    pages: ["..."],
+  },
+];
 </script>
 
 <template>
-  <RouterView 
-      :characters="characters"
-      :dialogues="dialogues"
-    />
+  <RouterView :characters="characters" :dialogues="dialogues" />
 </template>
