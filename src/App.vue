@@ -1,87 +1,68 @@
 <script setup>
 import { RouterView } from "vue-router";
 
-// IMPORTAR IMÁGENES
 import koheartsNeutral from "@/assets/characters/kohearts/kohearts_neutral.png";
 import whiterabbitNeutral from "@/assets/characters/whiterabbit/whiterabbit_neutral.png";
 import cheshirecatNeutral from "@/assets/characters/cheshirecat/cheshirecat_neutral.png";
-import koheartsTalk from "@/assets/characters/kohearts/kohearts_talk.png";
-import whiterabbitTalk from "@/assets/characters/whiterabbit/whiterabbit_talk.png";
-import cheshirecatTalk from "@/assets/characters/cheshirecat/cheshirecat_talk.png";
 
 import dungeon1 from "@/assets/backgrounds/dungeon1.png";
 import dungeon2 from "@/assets/backgrounds/dungeon2.png";
 
 // PERSONAJES
 const characters = [
-  {
-    id: "kohearts",
-    name: "King of Hearts",
-    portraits: {
-      neutral: koheartsNeutral,
-      talk: koheartsTalk,
-    },
-  },
-  {
-    id: "whiterabbit",
-    name: "White Rabbit",
-    portraits: {
-      neutral: whiterabbitNeutral,
-      talk: whiterabbitTalk,
-    },
-  },
-  {
-    id: "cheshirecat",
-    name: "Cheshire Cat",
-    portraits: {
-      neutral: cheshirecatNeutral,
-      talk: cheshirecatTalk,
-    },
-  },
+  { id: 1, name: "King of Hearts", image: koheartsNeutral },
+  { id: 2, name: "White Rabbit", image: whiterabbitNeutral },
+  { id: 3, name: "Cheshire Cat", image: cheshirecatNeutral },
+];
+
+// FONDOS
+const backgrounds = [
+  { id: 1, image: dungeon1, name: "Dungeon 1" },
+  { id: 2, image: dungeon2, name: "Dungeon 2" },
 ];
 
 // DIÁLOGOS
 const dialogues = [
   {
     id: "d1",
-    characterIds: ["kohearts", "whiterabbit"],
-    speakerId: "kohearts",
-    background: dungeon1,
-    pages: [
-      "Bienvenido al reino subterráneo.",
-      "Soy King of Hearts, protector de estas tierras.",
+    defaultBackgroundId: 1,
+    utterances: [
+      {
+        id: "u1",
+        characterId: 1,
+        texts: [
+          "Bienvenido al reino subterráneo.",
+          "Soy King of Hearts, protector de estas tierras.",
+        ],
+        position: "left",
+      },
+      {
+        id: "u2",
+        characterId: 2,
+        texts: ["Y yo soy White Rabbit, tu guía en este lugar."],
+        position: "right",
+      },
     ],
   },
-
   {
     id: "d2",
-    characterIds: ["kohearts", "whiterabbit"],
-    speakerId: "whiterabbit",
-    background: dungeon1,
-    pages: [
-      "Bienvenido al reino subterráneo.",
-      "Soy White Rabbit, tu guía en este lugar.",
+    defaultBackgroundId: 2,
+    utterances: [
+      {
+        id: "u1",
+        characterId: 3,
+        texts: ["Soy el misterioso Cheshire Cat."],
+        position: "center",
+      },
     ],
-  },
-
-  {
-    id: "d3",
-    characterIds: ["cheshirecat"],
-    speakerId: "cheshirecat",
-    background: dungeon2,
-    pages: ["Soy el misterioso Cheshire Cat."],
-  },
-
-  {
-    id: "d4",
-    characterIds: ["cheshirecat"],
-    speakerId: null,
-    background: dungeon2,
-    pages: ["..."],
   },
 ];
 </script>
 
 <template>
-  <RouterView :characters="characters" :dialogues="dialogues" />
+  <RouterView
+    :characters="characters"
+    :backgrounds="backgrounds"
+    :dialogues="dialogues"
+  />
 </template>
