@@ -57,6 +57,24 @@ const dialogues = [
     ],
   },
 ];
+
+// TEMAS
+const yellowTheme = {
+  dialogueBg: "bg-gray-900",
+  border: "border-yellow-500",
+  speakerName: "text-yellow-400",
+  button: "bg-gray-700 hover:bg-yellow-500 hover:text-black",
+  buttonActive: "bg-yellow-500 text-black"
+};
+
+const cyanTheme = {
+  dialogueBg: "bg-gray-900",
+  border: "border-cyan-400",
+  speakerName: "text-cyan-400",
+  button: "bg-gray-800 hover:bg-cyan-500 hover:text-black",
+  buttonActive: "bg-cyan-500 text-black"
+};
+
 </script>
 
 <template>
@@ -64,5 +82,6 @@ const dialogues = [
     :characters="characters"
     :backgrounds="backgrounds"
     :dialogues="dialogues"
+    :theme="cyanTheme"
   />
 </template>

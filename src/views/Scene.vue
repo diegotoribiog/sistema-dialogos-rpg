@@ -6,7 +6,18 @@ const props = defineProps({
   backgrounds: Array,
   dialogues: Array,
   speed: { type: Number, default: 50 },
+  theme: Object,
 });
+
+// TEMAS
+const defaultTheme = {
+  dialogueBg: "bg-gray-900",
+  border: "border-yellow-500",
+  speakerName: "text-yellow-400",
+  button: "bg-gray-700 hover:bg-yellow-500 hover:text-black",
+};
+
+const theme = computed(() => props.theme ?? defaultTheme);
 
 // HELPERS
 function getCharacter(id) {
@@ -178,11 +189,18 @@ watch(currentText, () => startCurrentText());
 
     <!-- CAJA DE DIÁLOGO -->
     <div
-      class="absolute bottom-0 w-full bg-gray-900 bg-opacity-95 p-6 md:p-8 border-t-4 border-yellow-500 shadow-lg font-serif h-48 flex flex-col"
+      :class="[
+        'absolute bottom-0 w-full bg-opacity-95 p-6 md:p-8 border-t-4 shadow-lg font-serif h-48 flex flex-col',
+        theme.dialogueBg,
+        theme.border,
+      ]"
     >
       <!-- NOMBRE DEL HABLANTE -->
       <div
-        class="font-bold text-lg md:text-2xl text-yellow-400 tracking-wide min-h-8"
+        :class="[
+          'font-bold text-lg md:text-2xl tracking-wide min-h-8',
+          theme.speakerName,
+        ]"
       >
         {{ currentSpeaker?.name ?? "" }}
       </div>
@@ -197,9 +215,7 @@ watch(currentText, () => startCurrentText());
         @click="typewriterEnabled = !typewriterEnabled"
         :class="[
           'absolute top-2 right-16 px-2 py-1 text-xs shadow transition-colors duration-200',
-          typewriterEnabled
-            ? 'bg-yellow-500 text-black'
-            : 'bg-gray-700 text-white hover:bg-yellow-500 hover:text-black',
+          typewriterEnabled ? theme.buttonActive : theme.button
         ]"
       >
         Anim
@@ -213,27 +229,32 @@ watch(currentText, () => startCurrentText());
         "
         :class="[
           'absolute top-2 right-2 px-2 py-1 text-xs shadow transition-colors duration-200',
-          speechEnabled
-            ? 'bg-yellow-500 text-black'
-            : 'bg-gray-700 text-white hover:bg-yellow-500 hover:text-black',
+          speechEnabled ? theme.buttonActive : theme.button
         ]"
       >
         Voz
       </button>
 
       <!-- NAVEGACIÓN -->
-      <div class="absolute bottom-4 right-4 flex space-x-2">
+      <div class="flex justify-end gap-2 mt-2">
         <button
           @click="prev"
           :disabled="isFirst"
-          class="bg-gray-700 px-3 md:px-4 py-2 shadow hover:bg-yellow-500 hover:text-black transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          :class="[
+            'px-2 py-1 text-sm shadow transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed',
+            theme.button,
+          ]"
         >
           Atrás
         </button>
+
         <button
           @click="next"
           :disabled="isLast"
-          class="bg-gray-700 px-3 md:px-4 py-2 shadow hover:bg-yellow-500 hover:text-black transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed"
+          :class="[
+            'px-2 py-1 text-sm shadow transition-colors duration-200 disabled:opacity-30 disabled:cursor-not-allowed',
+            theme.button,
+          ]"
         >
           Siguiente
         </button>
