@@ -64,7 +64,8 @@ const yellowTheme = {
   border: "border-yellow-500",
   speakerName: "text-yellow-400",
   button: "bg-gray-700 hover:bg-yellow-500 hover:text-black",
-  buttonActive: "bg-yellow-500 text-black"
+  buttonActive: "bg-yellow-500 text-black",
+  highlightWord: "text-yellow-400"
 };
 
 const cyanTheme = {
@@ -72,7 +73,8 @@ const cyanTheme = {
   border: "border-cyan-400",
   speakerName: "text-cyan-400",
   button: "bg-gray-800 hover:bg-cyan-500 hover:text-black",
-  buttonActive: "bg-cyan-500 text-black"
+  buttonActive: "bg-cyan-500 text-black",
+  highlightWord: "text-cyan-400",
 };
 
 </script>
@@ -82,6 +84,6 @@ const cyanTheme = {
     :characters="characters"
     :backgrounds="backgrounds"
     :dialogues="dialogues"
-    :theme="cyanTheme"
+    :theme="yellowTheme"
   />
 </template>

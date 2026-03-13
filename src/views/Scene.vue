@@ -39,6 +39,11 @@ const currentUtterance = computed(
 );
 const currentText = computed(() => currentUtterance.value.texts[pageIdx.value]);
 
+const words = computed(() => {
+  const text = typewriterEnabled.value ? displayedText.value : currentText.value
+  return text.split(" ")
+})
+
 // LÍMITES
 const isFirst = computed(
   () =>
@@ -93,6 +98,7 @@ function typeWriter(text) {
 
 // SÍNTESIS DE VOZ
 const speechEnabled = ref(true);
+const currentWordIndex = ref(-1); // Índice de la palabra que se está pronunciando para resaltar en pantalla
 
 function speak(text) {
   window.speechSynthesis.cancel();
@@ -102,6 +108,14 @@ function speak(text) {
   utterance.lang = "es-ES";
   utterance.rate = 1;
   utterance.pitch = 1;
+
+  // Actualiza currentWordIndex según la palabra que está leyendo el navegador (para resaltar en pantalla)
+  utterance.onboundary = (event) => {
+    if (event.name === "word") {
+      const spokenText = text.substring(0, event.charIndex);
+      currentWordIndex.value = spokenText.split(" ").length - 1;
+    }
+  };
 
   // BUSCAR VOZ EN ESPAÑOL SI ESTÁ DISPONIBLE
   const voices = window.speechSynthesis.getVoices();
@@ -207,7 +221,16 @@ watch(currentText, () => startCurrentText());
 
       <!-- TEXTO -->
       <div class="mt-2 md:mt-3 text-base md:text-lg text-white">
-        {{ typewriterEnabled ? displayedText : currentText }}
+        <!-- Muestra cada palabra del diálogo y resalta la que se está pronunciando -->
+        <span
+          v-for="(word, i) in words"
+          :key="i"
+          :class="[
+            i === currentWordIndex ? theme.highlightWord + ' font-bold' : ''
+          ]"
+        >
+          {{ word }}&nbsp;
+        </span>
       </div>
 
       <!-- BOTÓN ANIMACIÓN -->
