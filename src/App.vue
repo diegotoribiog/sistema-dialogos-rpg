@@ -8,7 +8,7 @@ import cheshirecatNeutral from "@/assets/characters/cheshirecat/cheshirecat_neut
 import dungeon1 from "@/assets/backgrounds/dungeon1.png";
 import dungeon2 from "@/assets/backgrounds/dungeon2.png";
 
-// PERSONAJES
+// PERSONAJESs
 const characters = [
   { id: 1, name: "King of Hearts", image: koheartsNeutral },
   { id: 2, name: "White Rabbit", image: whiterabbitNeutral },
